@@ -34,6 +34,9 @@ export const featuredProject = {
   demoUrl: "https://zelterm.com/",
 } as const;
 
+// Enlace al showcase del premio (sección Premios).
+export const awardUrl = "https://ethglobal.com/showcase/hack-the-world-3tw5n";
+
 export const sideProjects = [
   { key: "schedule", num: "02", href: "https://schedule-app-snowy.vercel.app/login" },
   { key: "catalystbet", num: "03", href: "https://catalystbet.vercel.app/" },
