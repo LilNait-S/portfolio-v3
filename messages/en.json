@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "title": "Sergio Delgado — Fullstack Engineer",
+    "description": "Portfolio of Sergio Delgado. I build SaaS platforms and Web3 applications end to end."
+  },
+  "nav": {
+    "work": "Work",
+    "experience": "Experience",
+    "stack": "Stack",
+    "about": "About"
+  },
+  "hero": {
+    "role": "FULLSTACK ENGINEER",
+    "titleLine1": "Building complete products that",
+    "titleHighlight": "solve real problems.",
+    "subtitle": "I build scalable SaaS platforms and Web3 applications from end to end. Specialized in React, Next.js, NestJS and multi-tenant architectures.",
+    "ctaWork": "View My Work",
+    "ctaCv": "Download CV",
+    "systemStatus": "SYSTEM STATUS",
+    "systemReady": "READY TO BUILD THE NEXT IDEA."
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "work": {
+    "label": "SELECTED WORK",
+    "featuredTag": "FEATURED PROJECT",
+    "liveDemo": "Live demo",
+    "viewProject": "View project",
+    "previewPlaceholder": "[ dashboard preview ]",
+    "projects": {
+      "zelterm": {
+        "name": "Zelterm ERP",
+        "short": "SaaS ERP for retail.",
+        "summary": "Multi-tenant ERP for retail: inventory, sales and end-to-end operations.",
+        "bullets": [
+          "Complete architecture: frontend, backend and database.",
+          "Inventory with traceability, multi-payment POS and e-invoicing.",
+          "Deployed to the cloud for scalability and availability."
+        ]
+      },
+      "schedule": {
+        "name": "Schedule App (MVP)",
+        "short": "Management for private tutors.",
+        "summary": "Management system for private tutors: classes, students and payments. Built in 3 days."
+      },
+      "catalystbet": {
+        "name": "CatalystBet (Web3)",
+        "short": "Decentralized betting dApp.",
+        "summary": "Decentralized betting dApp with smart contracts, wallets and leaderboard."
+      }
+    }
+  },
+  "experience": {
+    "label": "EXPERIENCE",
+    "items": {
+      "inuba": {
+        "role": "Fullstack Developer",
+        "company": "Inuba",
+        "period": "Dec. 2024 – May. 2026",
+        "summary": "Healthcare SaaS platform used by pharmacies for clinical patient management.",
+        "bullets": [
+          "Production system used by 3-4 pharmacies with active professionals.",
+          "Patient, treatment, questionnaire and dashboard modules in a team of 4.",
+          "Dynamic forms with medical-logic validations.",
+          "Automated testing with Playwright and AI agents."
+        ]
+      },
+      "gato": {
+        "role": "Fullstack Developer",
+        "company": "Agencia Gato",
+        "period": "Jun. 2024 – Jan. 2025",
+        "summary": "Web applications focused on performance and user experience.",
+        "bullets": [
+          "Led an accounting dashboard with server-side rendering.",
+          "Translated business requirements into functional interfaces.",
+          "Built APIs and business logic for the frontend."
+        ]
+      }
+    }
+  },
+  "stack": {
+    "label": "TECH STACK",
+    "groups": {
+      "frontend": { "title": "FRONTEND", "items": ["React", "Next.js", "TypeScript"] },
+      "backend": { "title": "BACKEND", "items": ["Node.js", "NestJS", "Express"] },
+      "database": { "title": "DATABASE", "items": ["PostgreSQL", "Prisma", "Supabase"] },
+      "architecture": { "title": "ARCHITECTURE", "items": ["Monorepos", "REST APIs", "Multi-tenant"] },
+      "tools": { "title": "TOOLS", "items": ["Git", "Docker", "Playwright"] },
+      "cloud": { "title": "CLOUD", "items": ["Vercel", "Railway", "Cloudflare R2"] }
+    }
+  },
+  "awards": {
+    "label": "AWARDS",
+    "ethglobal": {
+      "title": "ETHGlobal Buenos Aires 2025",
+      "type": "HACKATHON",
+      "summary": "Project: Hack the World — 3 prizes in the MATE Metaprotocol (EVVM) track.",
+      "bullets": ["Best Integration", "Best use of the Metaprotocol", "Feedback Prize"]
+    }
+  },
+  "about": {
+    "label": "ABOUT ME",
+    "p1": "Fullstack developer with 3+ years of experience building SaaS products from scratch and evolving systems in production.",
+    "p2": "I'm passionate about solving complex problems and turning ideas into real products people use — integrating frontend, backend and AI-assisted workflows.",
+    "quote": "I don't just write code. I build systems that scale."
+  },
+  "footer": {
+    "copyright": "© 2026 Sergio Delgado. Lima, Peru."
+  }
+}

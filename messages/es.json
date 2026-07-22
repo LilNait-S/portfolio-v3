@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "title": "Sergio Delgado — Fullstack Engineer",
+    "description": "Portfolio de Sergio Delgado. Construyo plataformas SaaS y aplicaciones Web3 de punta a punta."
+  },
+  "nav": {
+    "work": "Trabajo",
+    "experience": "Experiencia",
+    "stack": "Stack",
+    "about": "Sobre mí"
+  },
+  "hero": {
+    "role": "FULLSTACK ENGINEER",
+    "titleLine1": "Construyo productos completos que",
+    "titleHighlight": "resuelven problemas reales.",
+    "subtitle": "Construyo plataformas SaaS y aplicaciones Web3 de punta a punta. Especializado en React, Next.js, NestJS y arquitecturas multi-tenant.",
+    "ctaWork": "Ver mi trabajo",
+    "ctaCv": "Descargar CV",
+    "systemStatus": "ESTADO DEL SISTEMA",
+    "systemReady": "LISTO PARA CONSTRUIR LA PRÓXIMA IDEA."
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "work": {
+    "label": "TRABAJO SELECCIONADO",
+    "featuredTag": "PROYECTO DESTACADO",
+    "liveDemo": "Demo en vivo",
+    "viewProject": "Ver proyecto",
+    "previewPlaceholder": "[ vista previa del dashboard ]",
+    "projects": {
+      "zelterm": {
+        "name": "Zelterm ERP",
+        "short": "ERP SaaS para retail.",
+        "summary": "ERP multi-tenant para retail: inventario, ventas y operaciones de punta a punta.",
+        "bullets": [
+          "Arquitectura completa: frontend, backend y base de datos.",
+          "Inventario con trazabilidad, POS multi-pago y facturación electrónica.",
+          "Desplegado en la nube para escalabilidad y disponibilidad."
+        ]
+      },
+      "schedule": {
+        "name": "Schedule App (MVP)",
+        "short": "Gestión para profesores particulares.",
+        "summary": "Sistema de gestión para profesores particulares: clases, alumnos y pagos. Construido en 3 días."
+      },
+      "catalystbet": {
+        "name": "CatalystBet (Web3)",
+        "short": "dApp de apuestas descentralizada.",
+        "summary": "dApp descentralizada de apuestas con smart contracts, wallets y leaderboard."
+      }
+    }
+  },
+  "experience": {
+    "label": "EXPERIENCIA",
+    "items": {
+      "inuba": {
+        "role": "Fullstack Developer",
+        "company": "Inuba",
+        "period": "Dic. 2024 – May. 2026",
+        "summary": "Plataforma SaaS de salud usada por farmacias para gestión clínica de pacientes.",
+        "bullets": [
+          "Sistema en producción usado por 3-4 farmacias con profesionales activos.",
+          "Módulos de pacientes, tratamientos, cuestionarios y dashboards en equipo de 4.",
+          "Formularios dinámicos con validaciones de lógica médica.",
+          "Testing automatizado con Playwright y agentes de IA."
+        ]
+      },
+      "gato": {
+        "role": "Fullstack Developer",
+        "company": "Agencia Gato",
+        "period": "Jun. 2024 – Ene. 2025",
+        "summary": "Aplicaciones web enfocadas en rendimiento y experiencia de usuario.",
+        "bullets": [
+          "Lideré un dashboard contable con renderizado del lado del servidor.",
+          "Traduje requerimientos de negocio en interfaces funcionales.",
+          "Construí APIs y lógica de negocio para el frontend."
+        ]
+      }
+    }
+  },
+  "stack": {
+    "label": "STACK TÉCNICO",
+    "groups": {
+      "frontend": { "title": "FRONTEND", "items": ["React", "Next.js", "TypeScript"] },
+      "backend": { "title": "BACKEND", "items": ["Node.js", "NestJS", "Express"] },
+      "database": { "title": "BASE DE DATOS", "items": ["PostgreSQL", "Prisma", "Supabase"] },
+      "architecture": { "title": "ARQUITECTURA", "items": ["Monorepos", "APIs REST", "Multi-tenant"] },
+      "tools": { "title": "HERRAMIENTAS", "items": ["Git", "Docker", "Playwright"] },
+      "cloud": { "title": "CLOUD", "items": ["Vercel", "Railway", "Cloudflare R2"] }
+    }
+  },
+  "awards": {
+    "label": "PREMIOS",
+    "ethglobal": {
+      "title": "ETHGlobal Buenos Aires 2025",
+      "type": "HACKATHON",
+      "summary": "Proyecto: Hack the World — 3 premios en el track MATE Metaprotocol (EVVM).",
+      "bullets": ["Mejor Integración", "Mejor uso del Metaprotocolo", "Premio de Feedback"]
+    }
+  },
+  "about": {
+    "label": "SOBRE MÍ",
+    "p1": "Desarrollador Fullstack con más de 3 años de experiencia construyendo productos SaaS desde cero y evolucionando sistemas en producción.",
+    "p2": "Me apasiona resolver problemas complejos y convertir ideas en productos reales que la gente usa — integrando frontend, backend y flujos de trabajo asistidos por IA.",
+    "quote": "No solo escribo código. Construyo sistemas que escalan."
+  },
+  "footer": {
+    "copyright": "© 2026 Sergio Delgado. Lima, Perú."
+  }
+}
