@@ -32,7 +32,7 @@ function ProjectCards({ fan = false }: { fan?: boolean }) {
             key={p.key}
             href={p.href}
             style={fanStyle(i)}
-            className={`brackets group flex flex-col rounded-lg border backdrop-blur-sm transition-all hover:border-primary/50 ${
+            className={`brackets group flex flex-col rounded-tr-lg rounded-bl-lg border backdrop-blur-sm transition-all hover:border-primary/50 ${
               featured
                 ? "z-10 -mx-2 border-primary/40 bg-card px-6 pb-6 pt-9 shadow-lg shadow-primary/20"
                 : "border-border bg-card/80 px-4 py-5 opacity-90 hover:bg-card"
@@ -82,7 +82,7 @@ function SystemStatus({ className = "" }: { className?: string }) {
       // El borde izquierdo se corta en diagonal con el ángulo de la franja
       // morada. Al colocar el panel sobre la franja, parece que sale de ella.
       style={{ clipPath: "polygon(4.5% 0, 100% 0, 100% 100%, 21% 100%)" }}
-      className={`brackets relative overflow-hidden rounded-xl border border-border bg-card/90 py-7 pl-24 pr-14 backdrop-blur-md ${className} rotate-6`}
+      className={`brackets relatives rounded-tr-xl rounded-bl-xl border border-border bg-card/90 py-7 pl-24 pr-14 backdrop-blur-md ${className} rotate-6`}
     >
       <Code2 className="absolute right-5 top-5 size-5 text-primary/60" />
       <p className="font-mono text-[11px] tracking-[0.3em] text-muted-foreground">
