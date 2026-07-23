@@ -6,6 +6,9 @@
     "node": "22.x"
   },
   "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "ignoredBuiltDependencies": ["sharp", "unrs-resolver"]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
