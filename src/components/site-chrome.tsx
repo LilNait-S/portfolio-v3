@@ -27,7 +27,7 @@ export function SiteChrome() {
       <PlayerCard />
 
       {/* Controles flotantes de idioma y tema */}
-      <div className="fixed right-10 top-7 z-50 flex items-center gap-1 rounded-full border border-border bg-card/70 px-1 py-1 backdrop-blur-md">
+      <div className="fixed right-4 top-4 z-50 flex items-center gap-1 rounded-full border border-border bg-card/70 px-1 py-1 backdrop-blur-md lg:right-10 lg:top-7">
         <LocaleToggle />
         <ThemeToggle />
       </div>

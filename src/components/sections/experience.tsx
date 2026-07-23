@@ -10,7 +10,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative scroll-mt-20 border-b border-border py-24"
+      className="relative scroll-mt-20 border-b border-border py-16 sm:py-24"
     >
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
 

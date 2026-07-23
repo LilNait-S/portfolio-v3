@@ -26,8 +26,22 @@ function HeroDecor() {
       </defs>
 
       {/* Clústeres de puntos */}
-      <rect x="60" y="40" width="230" height="140" fill="url(#hero-dots)" opacity="0.1" />
-      <rect x="980" y="470" width="180" height="150" fill="url(#hero-dots)" opacity="0.08" />
+      <rect
+        x="60"
+        y="40"
+        width="230"
+        height="140"
+        fill="url(#hero-dots)"
+        opacity="0.1"
+      />
+      <rect
+        x="980"
+        y="470"
+        width="180"
+        height="150"
+        fill="url(#hero-dots)"
+        opacity="0.08"
+      />
 
       {/* Shards irregulares rellenos (gris). Cada punto es un par "x y". */}
       <g fill="currentColor">
@@ -116,15 +130,28 @@ function ProjectCards({ fan = false }: { fan?: boolean }) {
 
 // Panel SYSTEM STATUS: ancho, con mucho padding. Se coloca de modo que la
 // franja morada pase por detrás y parezca que el panel sale de ella.
-function SystemStatus({ className = "" }: { className?: string }) {
+// `floating` activa el efecto de escritorio (corte diagonal + rotación) para
+// que parezca salir de la franja. Sin él, se muestra como una card normal
+// (para el apilado móvil, igual que ProjectCards).
+function SystemStatus({
+  className = "",
+  floating = false,
+}: {
+  className?: string
+  floating?: boolean
+}) {
   const t = useTranslations("hero")
 
   return (
     <div
-      // El borde izquierdo se corta en diagonal con el ángulo de la franja
-      // morada. Al colocar el panel sobre la franja, parece que sale de ella.
-      style={{ clipPath: "polygon(4.5% 0, 100% 0, 100% 100%, 21% 100%)" }}
-      className={`brackets relatives rounded-tr-xl rounded-bl-xl border border-border bg-card/90 py-7 pl-24 pr-14 backdrop-blur-md ${className} rotate-6`}
+      style={
+        floating
+          ? { clipPath: "polygon(4.5% 0, 100% 0, 100% 100%, 21% 100%)" }
+          : undefined
+      }
+      className={`brackets rounded-tr-xl rounded-bl-xl border border-border bg-card/90 backdrop-blur-md ${
+        floating ? "rotate-6 py-7 pl-24 pr-14" : "p-5"
+      } ${className}`}
     >
       <Code2 className="absolute right-5 top-5 size-5 text-primary/60" />
       <p className="font-mono text-[11px] tracking-[0.3em] text-muted-foreground">
@@ -185,12 +212,12 @@ export function Hero() {
         <div className="absolute right-24 top-2/5 z-20 w-52 -translate-y-1/2 translate-x-[35%]">
           <ProjectCards fan />
         </div>
+      </div>
 
-        {/* Panel SYSTEM STATUS: la franja morada pasa por detrás y da la
-          impresión de que el panel sale de ella. */}
-        <div className="absolute right-24 top-10/12 z-20 w-52 -translate-y-1/2 translate-x-[35%]">
-          <SystemStatus className="pointer-events-auto absolute left-1/2 top-[70%] z-30 hidden w-96 -translate-x-1/2 lg:block" />
-        </div>
+      {/* Panel SYSTEM STATUS: el wrapper (absoluto) lo posiciona respecto a la
+          sección; el panel va dentro. Así no ocupa espacio ni empuja nada. */}
+      <div className="pointer-events-none absolute bottom-24 left-[69.4%] z-30 hidden w-96 lg:block">
+        <SystemStatus floating />
       </div>
 
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-24 lg:px-16">

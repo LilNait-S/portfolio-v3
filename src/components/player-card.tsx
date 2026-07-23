@@ -70,7 +70,7 @@ export function PlayerCard() {
         aria-label={ta("contact")}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="group flex items-center gap-3 rounded-full p-1.5 pr-5 transition-transform hover:scale-[1.02]"
+        className="group flex items-center gap-3 rounded-full border border-border/60 bg-background/50 p-1.5 pr-5 backdrop-blur-md transition-transform hover:scale-[1.02]"
       >
         <span className="relative flex size-16 shrink-0 rounded-full border-[0.5px] border-muted-foreground/60 p-1.5 bg-background">
           <img

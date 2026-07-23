@@ -56,7 +56,7 @@ export default async function ProjectDetail({
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
       <Backdrop />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-20 lg:px-8">
+      <div className="relative mx-auto max-w-6xl px-6 pt-14 pb-28 sm:py-20 lg:px-8">
         {/* Volver */}
         <Link
           href="/#work"
@@ -79,7 +79,7 @@ export default async function ProjectDetail({
         {/* ── 2 columnas: contenido + ficha sticky ─────────────── */}
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_300px]">
           {/* Columna izquierda: fotos + detalles */}
-          <div>
+          <div className="order-2 lg:order-1">
             {/* Galería */}
             <Gallery
               images={project.gallery}
@@ -133,7 +133,7 @@ export default async function ProjectDetail({
           </div>
 
           {/* Columna derecha: ficha técnica sticky */}
-          <aside className="lg:sticky lg:top-24 lg:h-fit">
+          <aside className="order-1 lg:order-2 lg:sticky lg:top-24 lg:h-fit">
             <div className="brackets rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm">
               <p className="font-mono text-[11px] font-medium tracking-[0.25em] text-primary">
                 {t("detail.info")}

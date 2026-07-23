@@ -32,7 +32,7 @@ export function SectionMenu() {
   }, [open]);
 
   return (
-    <div ref={ref} className="fixed left-10 top-7 z-50">
+    <div ref={ref} className="fixed left-4 top-4 z-50 lg:left-10 lg:top-7">
       <button
         type="button"
         aria-label={ta("menu")}
