@@ -1,7 +1,7 @@
 // Configuración editable del sitio: enlaces, CV y datos decorativos.
 export const site = {
   name: "Sergio Delgado Arenas",
-  nick: "Naito",
+  nick: "Sergio Delgado",
   role: "Fullstack Developer",
   avatar: "/images/avatar.webp",
   handle: "SERGIO.DEV",
@@ -24,9 +24,9 @@ export const site = {
 // Proyectos destacados del hero (orden = numeración 01, 02, 03).
 // El texto viene de las traducciones (messages/*.json → work.projects).
 export const heroProjects = [
-  { key: "zelterm", href: "#work" },
-  { key: "aini28", href: "#work" },
-  { key: "catalystbet", href: "#work" },
+  { key: "zelterm", href: "/projects/zelterm" },
+  { key: "aini28", href: "/projects/aini28" },
+  { key: "catalystbet", href: "/projects/catalystbet" },
 ] as const;
 
 // Sección "Trabajo seleccionado". Los textos vienen de las traducciones;
@@ -40,6 +40,56 @@ export const featuredProject = {
 
 // Enlace al showcase del premio (sección Premios).
 export const awardUrl = "https://ethglobal.com/showcase/hack-the-world-3tw5n";
+export const awardCertificateUrl = "/certificado-ethglobal.pdf";
+
+// Datos por proyecto para las páginas de detalle (/projects/[slug]).
+// El texto (overview, decisiones) vive en messages → work.projects.<slug>.
+export const projects = {
+  zelterm: {
+    year: "2026",
+    demoUrl: "https://zelterm.com/",
+    repoUrl: "",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "NestJS 11",
+      "Prisma 7",
+      "PostgreSQL",
+      "Tailwind CSS 4",
+      "TanStack Query",
+      "Zustand",
+      "Turborepo",
+      "Cloudflare R2",
+      "Nubefact",
+    ],
+    gallery: ["/images/projects/zelterm.webp"],
+  },
+  aini28: {
+    year: "2025",
+    demoUrl: "https://aini28.com",
+    repoUrl: "",
+    stack: [
+      "Next.js 15",
+      "Sanity CMS",
+      "Upstash Redis",
+      "React Email",
+      "Tailwind CSS",
+      "Cloudflare",
+    ],
+    gallery: ["/images/projects/aini28.webp"],
+  },
+  catalystbet: {
+    year: "2025",
+    demoUrl: "https://catalystbet.vercel.app/",
+    repoUrl: "",
+    stack: ["Next.js", "Solidity", "Wagmi", "TypeScript"],
+    gallery: ["/images/projects/catalystbet.webp"],
+  },
+} as const;
+
+export type ProjectSlug = keyof typeof projects;
+export const projectSlugs = Object.keys(projects) as ProjectSlug[];
 
 export const sideProjects = [
   {

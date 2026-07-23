@@ -25,7 +25,7 @@ export function About() {
         </div>
 
         {/* ── Cita destacada ─────────────────────────────────── */}
-        <div className="brackets relative rounded-xl border border-border bg-card/60 p-8 backdrop-blur-sm md:p-10">
+        <div className="brackets relative rounded-tr-lg rounded-bl-lg border border-border bg-card/60 p-8 backdrop-blur-sm md:p-10">
           <Quote className="size-6 fill-primary text-primary" />
           <p className="mt-5 text-2xl font-bold leading-snug">
             {t("quote")}

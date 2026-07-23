@@ -75,13 +75,24 @@ export function Work() {
               ))}
             </div>
 
-            <a
-              href={featuredProject.demoUrl}
-              className="mt-6 flex w-fit items-center gap-1.5 font-mono text-xs font-medium uppercase tracking-widest text-primary transition-colors hover:text-primary/80"
-            >
-              {t("liveDemo")}
-              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Link
+                href={`/projects/${featuredProject.key}`}
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                {t("viewDetails")}
+                <ArrowRight className="size-4" />
+              </Link>
+              <a
+                href={featuredProject.demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-border px-5 text-sm font-medium transition-colors hover:border-primary/50 hover:text-primary"
+              >
+                {t("liveDemo")}
+                <ArrowUpRight className="size-4" />
+              </a>
+            </div>
           </article>
 
           {/* ── Proyectos secundarios ──────────────────────────── */}
@@ -89,7 +100,7 @@ export function Work() {
             {sideProjects.map((p) => (
               <Link
                 key={p.key}
-                href={p.href}
+                href={`/projects/${p.key}`}
                 className="brackets group flex flex-1 flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-card"
               >
                 <span className="font-mono text-2xl font-bold text-primary">

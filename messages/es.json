@@ -36,27 +36,127 @@
     "featuredTag": "PROYECTO DESTACADO",
     "liveDemo": "Demo en vivo",
     "viewProject": "Ver proyecto",
+    "viewDetails": "Ver detalles",
     "previewPlaceholder": "[ vista previa del dashboard ]",
+    "detail": {
+      "back": "Volver",
+      "overview": "Resumen",
+      "decisions": "Decisiones clave",
+      "stack": "Stack del proyecto",
+      "gallery": "Galería",
+      "repo": "Repositorio",
+      "challenges": "Retos y aprendizajes",
+      "info": "Ficha técnica",
+      "type": "Tipo",
+      "role": "Rol",
+      "status": "Estado",
+      "year": "Año",
+      "highlight": "Destacado"
+    },
     "projects": {
       "zelterm": {
         "name": "Zelterm ERP",
-        "short": "ERP SaaS para retail.",
-        "summary": "ERP multi-tenant para retail: inventario, ventas y operaciones de punta a punta.",
+        "short": "ERP para servicio técnico.",
+        "summary": "ERP multi-tenant para pymes de servicio técnico: órdenes de reparación, POS multimoneda, inventario con trazabilidad y facturación SUNAT.",
         "bullets": [
-          "Arquitectura completa: frontend, backend y base de datos.",
-          "Inventario con trazabilidad, POS multi-pago y facturación electrónica.",
-          "Desplegado en la nube para escalabilidad y disponibilidad."
+          "Órdenes de reparación con trazabilidad de punta a punta (protección ante reclamos).",
+          "POS multipago y multimoneda (PEN/USD) con facturación electrónica SUNAT.",
+          "Arquitectura multi-tenant sobre monorepo (Next.js + NestJS + Prisma)."
+        ],
+        "meta": {
+          "type": "Proyecto propio",
+          "role": "Fullstack (solo)",
+          "status": "En beta (pruebas)",
+          "highlight": "Multi-tenant · multimoneda · SUNAT"
+        },
+        "overview": "Zelterm nace para las pymes de servicio técnico, que no tenían un sistema accesible: las opciones existentes eran demasiado costosas. Me inspiré en mi etapa como vendedor de componentes electrónicos. La plataforma les da orden — registrar cada reparación, cómo llegó el producto y qué se hizo — con una trazabilidad que además los protege ante posibles reclamos. Reemplaza cuadernos y hojas de cálculo con una sola herramienta: órdenes de servicio, punto de venta, inventario con seguimiento por número de serie y facturación electrónica SUNAT.",
+        "decisions": [
+          {
+            "title": "Multi-tenant desde una sola base de datos",
+            "body": "Arranqué con una única base de datos compartida para lanzar rápido y con bajo costo. El plan de escalado es una tabla business con un database_id que enrute cada negocio a su propia base cuando el volumen lo justifique — una evolución gradual en vez de sobre-ingeniería desde el día uno."
+          },
+          {
+            "title": "Multimoneda y multipago en todo el sistema",
+            "body": "El sistema se configura en soles o dólares, pero al emitir el primer comprobante la moneda queda bloqueada por consistencia contable. Propagar esa regla por ventas, inventario y reportes fue el mayor reto: cada flujo podía introducir bugs de conversión."
+          },
+          {
+            "title": "Facturación SUNAT tercerizada (Nubefact)",
+            "body": "En vez de construir el conector fiscal desde cero, integré un proveedor autorizado. La complejidad se reduce a enviar bien los datos, cumpliendo la normativa peruana con mucho menos riesgo."
+          },
+          {
+            "title": "Despliegue gestionado ahora, VPS después",
+            "body": "Elegí Vercel + Railway para desplegar rápido y validar sin fricción de infraestructura. Cuando crezca la base de clientes migraré a un VPS por costo — una decisión que tomo cuando la demanda lo justifique, no antes."
+          },
+          {
+            "title": "Desarrollo asistido por agentes (Claude Code + MCP)",
+            "body": "Monté agentes especializados —frontend, backend, verificación, auditoría y testing— con skills que codifican cómo trabajaría yo. Incluso una skill que me interroga si una feature es realmente necesaria, para que el software escale de a pocos sin cargar complejidad innecesaria desde el inicio."
+          }
+        ],
+        "challenges": [
+          "Propagar la lógica multimoneda por todo el sistema generó bugs de conversión que fui corrigiendo flujo por flujo hasta dejarlos consistentes.",
+          "Reforcé la seguridad y el manejo de ventas a medida que entendía mejor los casos reales del negocio.",
+          "Prioricé terminarlo bien antes que rápido: solo reemplazo algo cuando aprendo una forma más eficiente que la que ya tengo."
         ]
       },
       "aini28": {
         "name": "Aini28",
         "short": "E-commerce de peluches.",
-        "summary": "E-commerce completo con Next.js 15 y Sanity CMS headless, con hardening de seguridad en producción (CSP, rate limiting) y emails transaccionales."
+        "summary": "E-commerce completo con Next.js 15 y Sanity CMS headless, con hardening de seguridad en producción (CSP, rate limiting) y emails transaccionales.",
+        "meta": {
+          "type": "Freelance",
+          "role": "Fullstack (solo)",
+          "status": "En producción",
+          "highlight": "Seguridad de producción: CSP + rate limiting"
+        },
+        "overview": "Tienda e-commerce de peluches construida como freelance con Next.js 15 y Sanity CMS headless para la gestión del catálogo, priorizando seguridad y rendimiento en un entorno de producción real.",
+        "decisions": [
+          {
+            "title": "Sanity CMS headless",
+            "body": "Separé el contenido del código para que el cliente gestione el catálogo sin tocar el código, con estructura flexible y previews."
+          },
+          {
+            "title": "Hardening de seguridad",
+            "body": "Implementé Content Security Policy, rate limiting con Upstash Redis y protección de los endpoints de correo para resistir abuso en producción."
+          },
+          {
+            "title": "SEO y rendimiento",
+            "body": "Añadí metadata estructurada (JSON-LD) y datos estructurados para buscadores, cuidando la velocidad de carga y la indexación."
+          }
+        ],
+        "challenges": [
+          "Endurecer la seguridad para un entorno de producción real: CSP, rate limiting y protección de los endpoints de correo.",
+          "Estructurar el catálogo en un CMS headless para que el cliente lo gestione de forma autónoma."
+        ]
       },
       "catalystbet": {
         "name": "CatalystBet (Web3)",
         "short": "dApp de apuestas descentralizada.",
-        "summary": "dApp descentralizada de apuestas con smart contracts, wallets y leaderboard."
+        "summary": "dApp descentralizada de apuestas con smart contracts, wallets y leaderboard.",
+        "meta": {
+          "type": "Proyecto personal",
+          "role": "Fullstack (solo)",
+          "status": "Testnet / Demo",
+          "highlight": "Interacción directa con smart contracts"
+        },
+        "overview": "Aplicación descentralizada de apuestas en testnet con interacción directa con smart contracts: sistema por fases, conexión de wallets, ejecución de transacciones on-chain y leaderboard.",
+        "decisions": [
+          {
+            "title": "Interacción directa con contratos",
+            "body": "Conecté el frontend directo a los smart contracts en testnet para ejecutar apuestas y reclamos sin un backend intermediario."
+          },
+          {
+            "title": "Lógica por fases (betting, race, claim)",
+            "body": "Modelé el juego en fases para reflejar con claridad el ciclo de una carrera on-chain y su estado."
+          },
+          {
+            "title": "UX para Web3",
+            "body": "Construí historial, leaderboard y múltiples vistas para que la experiencia descentralizada resulte clara al usuario."
+          }
+        ],
+        "challenges": [
+          "Sincronizar el estado del frontend con las fases on-chain (betting, race, claim) sin un backend intermediario.",
+          "Hacer la experiencia Web3 —wallets y transacciones— clara para usuarios no técnicos."
+        ]
       }
     }
   },
@@ -101,6 +201,7 @@
   },
   "awards": {
     "label": "PREMIOS",
+    "certificate": "Ver certificado",
     "ethglobal": {
       "title": "ETHGlobal Buenos Aires 2025",
       "type": "HACKATHON",

@@ -36,27 +36,127 @@
     "featuredTag": "FEATURED PROJECT",
     "liveDemo": "Live demo",
     "viewProject": "View project",
+    "viewDetails": "View details",
     "previewPlaceholder": "[ dashboard preview ]",
+    "detail": {
+      "back": "Back",
+      "overview": "Overview",
+      "decisions": "Key decisions",
+      "stack": "Project stack",
+      "gallery": "Gallery",
+      "repo": "Repository",
+      "challenges": "Challenges & learnings",
+      "info": "Project info",
+      "type": "Type",
+      "role": "Role",
+      "status": "Status",
+      "year": "Year",
+      "highlight": "Highlight"
+    },
     "projects": {
       "zelterm": {
         "name": "Zelterm ERP",
-        "short": "SaaS ERP for retail.",
-        "summary": "Multi-tenant ERP for retail: inventory, sales and end-to-end operations.",
+        "short": "ERP for tech-repair.",
+        "summary": "Multi-tenant ERP for tech-repair SMBs: repair orders, multi-currency POS, inventory with traceability and SUNAT e-invoicing.",
         "bullets": [
-          "Complete architecture: frontend, backend and database.",
-          "Inventory with traceability, multi-payment POS and e-invoicing.",
-          "Deployed to the cloud for scalability and availability."
+          "End-to-end repair orders with traceability (protection against claims).",
+          "Multi-payment, multi-currency POS (PEN/USD) with SUNAT e-invoicing.",
+          "Multi-tenant architecture on a monorepo (Next.js + NestJS + Prisma)."
+        ],
+        "meta": {
+          "type": "Personal product",
+          "role": "Fullstack (solo)",
+          "status": "Beta (testing)",
+          "highlight": "Multi-tenant · multi-currency · SUNAT"
+        },
+        "overview": "Zelterm was born for small tech-repair businesses that had no affordable system — existing options were too expensive. It's inspired by my time selling electronic components. The platform brings order — logging every repair, how the product arrived and what was done — with traceability that also protects them against potential claims. It replaces notebooks and spreadsheets with a single tool: service orders, point of sale, inventory with serial-number tracking and SUNAT e-invoicing.",
+        "decisions": [
+          {
+            "title": "Multi-tenant from a single database",
+            "body": "I started with one shared database to launch fast and cheap. The scaling plan is a business table with a database_id that routes each business to its own database once volume justifies it — a gradual evolution instead of day-one over-engineering."
+          },
+          {
+            "title": "Multi-currency and multi-payment across the system",
+            "body": "The system is configured in PEN or USD, but once the first invoice is issued the currency locks for accounting consistency. Propagating that rule across sales, inventory and reports was the biggest challenge: each flow could introduce conversion bugs."
+          },
+          {
+            "title": "SUNAT e-invoicing outsourced (Nubefact)",
+            "body": "Instead of building the fiscal connector from scratch, I integrated an authorized provider. The complexity boils down to sending the right data, meeting Peruvian regulations with far less risk."
+          },
+          {
+            "title": "Managed hosting now, VPS later",
+            "body": "I chose Vercel + Railway to deploy fast and validate without infrastructure friction. As the client base grows I'll move to a VPS for cost — a decision I make when demand justifies it, not before."
+          },
+          {
+            "title": "Agent-assisted development (Claude Code + MCP)",
+            "body": "I set up specialized agents —frontend, backend, verification, audit and testing— with skills that encode how I would work. Even a skill that challenges whether a feature is really needed, so the software scales gradually without piling on unnecessary complexity from the start."
+          }
+        ],
+        "challenges": [
+          "Propagating the multi-currency logic across the whole system caused conversion bugs I fixed flow by flow until they were consistent.",
+          "I hardened security and sales handling as I better understood the real business cases.",
+          "I prioritized finishing it well over fast: I only replace something when I learn a more efficient way than what I already have."
         ]
       },
       "aini28": {
         "name": "Aini28",
         "short": "Plush-toy e-commerce.",
-        "summary": "Full e-commerce with Next.js 15 and headless Sanity CMS, with production-grade security hardening (CSP, rate limiting) and transactional emails."
+        "summary": "Full e-commerce with Next.js 15 and headless Sanity CMS, with production-grade security hardening (CSP, rate limiting) and transactional emails.",
+        "meta": {
+          "type": "Freelance",
+          "role": "Fullstack (solo)",
+          "status": "In production",
+          "highlight": "Production security: CSP + rate limiting"
+        },
+        "overview": "Plush-toy e-commerce store built as a freelance project with Next.js 15 and headless Sanity CMS for catalog management, prioritizing security and performance in a real production environment.",
+        "decisions": [
+          {
+            "title": "Headless Sanity CMS",
+            "body": "I decoupled content from code so the client can manage the catalog without touching code, with a flexible structure and previews."
+          },
+          {
+            "title": "Security hardening",
+            "body": "I implemented a Content Security Policy, rate limiting with Upstash Redis and protected the mail endpoints to withstand abuse in production."
+          },
+          {
+            "title": "SEO and performance",
+            "body": "I added structured metadata (JSON-LD) and structured data for search engines, caring for load speed and indexing."
+          }
+        ],
+        "challenges": [
+          "Hardening security for a real production environment: CSP, rate limiting and protected mail endpoints.",
+          "Structuring the catalog in a headless CMS so the client can manage it independently."
+        ]
       },
       "catalystbet": {
         "name": "CatalystBet (Web3)",
         "short": "Decentralized betting dApp.",
-        "summary": "Decentralized betting dApp with smart contracts, wallets and leaderboard."
+        "summary": "Decentralized betting dApp with smart contracts, wallets and leaderboard.",
+        "meta": {
+          "type": "Personal project",
+          "role": "Fullstack (solo)",
+          "status": "Testnet / Demo",
+          "highlight": "Direct smart-contract interaction"
+        },
+        "overview": "Decentralized betting application on testnet with direct smart-contract interaction: phase-based system, wallet connection, on-chain transaction execution and leaderboard.",
+        "decisions": [
+          {
+            "title": "Direct contract interaction",
+            "body": "I connected the frontend directly to the testnet smart contracts to execute bets and claims without an intermediary backend."
+          },
+          {
+            "title": "Phase-based logic (betting, race, claim)",
+            "body": "I modeled the game in phases to clearly reflect an on-chain race cycle and its state."
+          },
+          {
+            "title": "Web3 UX",
+            "body": "I built history, leaderboard and multiple views so the decentralized experience feels clear to the user."
+          }
+        ],
+        "challenges": [
+          "Syncing frontend state with the on-chain phases (betting, race, claim) without an intermediary backend.",
+          "Making the Web3 experience —wallets and transactions— clear for non-technical users."
+        ]
       }
     }
   },
@@ -101,6 +201,7 @@
   },
   "awards": {
     "label": "AWARDS",
+    "certificate": "View certificate",
     "ethglobal": {
       "title": "ETHGlobal Buenos Aires 2025",
       "type": "HACKATHON",
