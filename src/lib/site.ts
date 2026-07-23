@@ -1,3 +1,9 @@
+// URL base del sitio. En Vercel se resuelve al dominio de producción;
+// en local cae a localhost. Se usa en metadata, sitemap y robots.
+export const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 // Configuración editable del sitio: enlaces, CV y datos decorativos.
 export const site = {
   name: "Sergio Delgado Arenas",

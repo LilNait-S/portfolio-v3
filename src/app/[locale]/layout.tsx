@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteChrome } from "@/components/site-chrome";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
+import { SITE_URL } from "@/lib/site";
 import "../globals.css";
 
 // Outfit para toda la UI (misma tipografía que TailAdmin).
@@ -32,10 +33,6 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
-
 export async function generateMetadata({
   params,
 }: {
@@ -47,9 +44,13 @@ export async function generateMetadata({
   const description = t("description");
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title,
     description,
+    alternates: {
+      canonical: locale === "en" ? "/en" : "/",
+      languages: { es: "/", en: "/en" },
+    },
     openGraph: {
       type: "website",
       siteName: "Sergio Delgado",
