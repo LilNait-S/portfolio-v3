@@ -1,53 +1,53 @@
-import { ArrowLeft, ArrowUpRight, ChevronRight } from "lucide-react";
-import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { GithubIcon } from "@/components/icons";
-import { SectionLabel } from "@/components/section-label";
-import { Badge } from "@/components/ui/badge";
-import { Link } from "@/i18n/navigation";
-import { projects, projectSlugs, type ProjectSlug } from "@/lib/site";
+import { ArrowLeft, ArrowUpRight, ChevronRight } from "lucide-react"
+import type { Metadata } from "next"
+import { getTranslations, setRequestLocale } from "next-intl/server"
+import { notFound } from "next/navigation"
+import { GithubIcon } from "@/components/icons"
+import { SectionLabel } from "@/components/section-label"
+import { Badge } from "@/components/ui/badge"
+import { Link } from "@/i18n/navigation"
+import { projects, projectSlugs, type ProjectSlug } from "@/lib/site"
 
-type Decision = { title: string; body: string };
+type Decision = { title: string; body: string }
 
 export function generateStaticParams() {
-  return projectSlugs.map((slug) => ({ slug }));
+  return projectSlugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
-  if (!projectSlugs.includes(slug as ProjectSlug)) return {};
-  const t = await getTranslations({ locale, namespace: "work" });
+  const { locale, slug } = await params
+  if (!projectSlugs.includes(slug as ProjectSlug)) return {}
+  const t = await getTranslations({ locale, namespace: "work" })
   return {
     title: `${t(`projects.${slug}.name`)} — Sergio Delgado`,
     description: t(`projects.${slug}.summary`),
-  };
+  }
 }
 
 export default async function ProjectDetail({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>
 }) {
-  const { locale, slug } = await params;
-  if (!projectSlugs.includes(slug as ProjectSlug)) notFound();
-  setRequestLocale(locale);
+  const { locale, slug } = await params
+  if (!projectSlugs.includes(slug as ProjectSlug)) notFound()
+  setRequestLocale(locale)
 
-  const project = projects[slug as ProjectSlug];
-  const t = await getTranslations({ locale, namespace: "work" });
-  const decisions = t.raw(`projects.${slug}.decisions`) as Decision[];
-  const challenges = t.raw(`projects.${slug}.challenges`) as string[];
+  const project = projects[slug as ProjectSlug]
+  const t = await getTranslations({ locale, namespace: "work" })
+  const decisions = t.raw(`projects.${slug}.decisions`) as Decision[]
+  const challenges = t.raw(`projects.${slug}.challenges`) as string[]
 
   const infoRows = [
     { label: t("detail.type"), value: t(`projects.${slug}.meta.type`) },
     { label: t("detail.role"), value: t(`projects.${slug}.meta.role`) },
     { label: t("detail.status"), value: t(`projects.${slug}.meta.status`) },
     { label: t("detail.year"), value: project.year },
-  ];
+  ]
 
   return (
     <main className="relative min-h-screen">
@@ -82,12 +82,12 @@ export default async function ProjectDetail({
               {project.gallery.map((src) => (
                 <div
                   key={src}
-                  className="brackets overflow-hidden rounded-xl border border-border"
+                  className="brackets rounded-tr-xl rounded-bl-xl border border-border"
                 >
                   <img
                     src={src}
                     alt={t(`projects.${slug}.name`)}
-                    className="w-full object-cover"
+                    className="w-full object-cover rounded-tr-xl rounded-bl-xl"
                   />
                 </div>
               ))}
@@ -207,5 +207,5 @@ export default async function ProjectDetail({
         </div>
       </div>
     </main>
-  );
+  )
 }

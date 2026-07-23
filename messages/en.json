@@ -134,32 +134,36 @@
       },
       "catalystbet": {
         "name": "CatalystBet (Web3)",
-        "short": "Decentralized betting dApp.",
-        "summary": "Decentralized betting dApp with smart contracts, wallets and leaderboard.",
+        "short": "On-chain betting (PoC).",
+        "summary": "Horse-racing themed betting dApp (Umamusume-style): a proof of concept for on-chain randomness without oracles, on Sonic testnet. Frontend + smart contracts only.",
         "meta": {
-          "type": "Personal project",
-          "role": "Fullstack (solo)",
-          "status": "Testnet / Demo",
-          "highlight": "Direct smart-contract interaction"
+          "type": "Team project (2)",
+          "role": "Design + Frontend (Web3)",
+          "status": "Testnet / PoC",
+          "highlight": "On-chain randomness without oracles"
         },
-        "overview": "Decentralized betting application on testnet with direct smart-contract interaction: phase-based system, wallet connection, on-chain transaction execution and leaderboard.",
+        "overview": "Horse-racing themed betting dApp, inspired by Umamusume, that I built with a fellow Web3 dev and auditor. The idea was a proof of concept: generating on-chain random numbers via a relayer, without depending on oracles like Chainlink, aiming to contribute a standard on Ethereum. It runs on Sonic testnet (EVM): the user picks a character, bets test USDC and waits for the phases to end to see if they won. No backend — just frontend and smart contracts.",
         "decisions": [
           {
-            "title": "Direct contract interaction",
-            "body": "I connected the frontend directly to the testnet smart contracts to execute bets and claims without an intermediary backend."
+            "title": "Randomness without oracles",
+            "body": "The project's purpose: to show that on-chain random numbers can be generated with a relayer, without relying on external oracles (Chainlink and similar). We aimed to lay down a reusable standard on Ethereum."
           },
           {
-            "title": "Phase-based logic (betting, race, claim)",
-            "body": "I modeled the game in phases to clearly reflect an on-chain race cycle and its state."
+            "title": "Block counter against manipulation",
+            "body": "We used a block counter to prevent validators from knowing the outcome in advance and manipulating the race — key for the randomness to be trustworthy."
           },
           {
-            "title": "Web3 UX",
-            "body": "I built history, leaderboard and multiple views so the decentralized experience feels clear to the user."
+            "title": "No backend: frontend + contracts",
+            "body": "The app talks directly to the already-deployed contracts via wagmi + viem (ABIs and addresses on the client). I handled design and frontend; my colleague built and audited the smart contracts."
+          },
+          {
+            "title": "Sign-in with wallet (SIWE)",
+            "body": "Beyond connecting the wallet with RainbowKit, the user signs a message (Sign-In With Ethereum + NextAuth) for a real session, not just a connected wallet."
           }
         ],
         "challenges": [
-          "Syncing frontend state with the on-chain phases (betting, race, claim) without an intermediary backend.",
-          "Making the Web3 experience —wallets and transactions— clear for non-technical users."
+          "Achieving trustworthy on-chain randomness without external oracles was the core challenge; solving it broadened our Web3 perspective a lot.",
+          "Syncing the phase-based flow (betting → race → claim) with on-chain state without an intermediary backend."
         ]
       }
     }

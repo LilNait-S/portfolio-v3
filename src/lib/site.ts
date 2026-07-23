@@ -85,8 +85,19 @@ export const projects = {
   catalystbet: {
     year: "2025",
     demoUrl: "https://catalystbet.vercel.app/",
-    repoUrl: "",
-    stack: ["Next.js", "Solidity", "Wagmi", "TypeScript"],
+    repoUrl: "https://github.com/LilNait-S/catalystbet",
+    stack: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "wagmi v2",
+      "viem",
+      "RainbowKit",
+      "SIWE / NextAuth",
+      "TanStack Query",
+      "Sonic testnet",
+    ],
     gallery: ["/images/projects/catalystbet.webp"],
   },
 } as const;

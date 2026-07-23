@@ -134,32 +134,36 @@
       },
       "catalystbet": {
         "name": "CatalystBet (Web3)",
-        "short": "dApp de apuestas descentralizada.",
-        "summary": "dApp descentralizada de apuestas con smart contracts, wallets y leaderboard.",
+        "short": "Apuestas on-chain (PoC).",
+        "summary": "dApp de apuestas con temática de carreras de caballos (estilo Umamusume): prueba de concepto de aleatoriedad on-chain sin oráculos, sobre Sonic testnet. Solo frontend + smart contracts.",
         "meta": {
-          "type": "Proyecto personal",
-          "role": "Fullstack (solo)",
-          "status": "Testnet / Demo",
-          "highlight": "Interacción directa con smart contracts"
+          "type": "Proyecto en equipo (2)",
+          "role": "Diseño + Frontend (Web3)",
+          "status": "Testnet / PoC",
+          "highlight": "Aleatoriedad on-chain sin oráculos"
         },
-        "overview": "Aplicación descentralizada de apuestas en testnet con interacción directa con smart contracts: sistema por fases, conexión de wallets, ejecución de transacciones on-chain y leaderboard.",
+        "overview": "dApp de apuestas con temática de carreras de caballos, inspirada en Umamusume, que creé junto a un colega dev y auditor Web3. La idea era una prueba de concepto: generar números aleatorios on-chain mediante un relayer, sin depender de oráculos como Chainlink, buscando aportar un estándar en Ethereum. Corre sobre Sonic testnet (EVM): el usuario elige su personaje, apuesta USDC de prueba y espera a que terminen las fases para saber si ganó. Sin backend — solo frontend y smart contracts.",
         "decisions": [
           {
-            "title": "Interacción directa con contratos",
-            "body": "Conecté el frontend directo a los smart contracts en testnet para ejecutar apuestas y reclamos sin un backend intermediario."
+            "title": "Aleatoriedad sin oráculos",
+            "body": "El propósito del proyecto: demostrar que se pueden generar números aleatorios on-chain con un relayer, sin depender de oráculos externos (Chainlink y similares). Buscábamos sentar un estándar reutilizable en Ethereum."
           },
           {
-            "title": "Lógica por fases (betting, race, claim)",
-            "body": "Modelé el juego en fases para reflejar con claridad el ciclo de una carrera on-chain y su estado."
+            "title": "Contador de bloques anti-manipulación",
+            "body": "Usamos un contador de bloques para evitar que los validadores conozcan el resultado de antemano y puedan manipular la carrera — un punto clave para que la aleatoriedad sea confiable."
           },
           {
-            "title": "UX para Web3",
-            "body": "Construí historial, leaderboard y múltiples vistas para que la experiencia descentralizada resulte clara al usuario."
+            "title": "Sin backend: frontend + contratos",
+            "body": "La app interactúa directo con los contratos ya desplegados vía wagmi + viem (ABIs y direcciones en el cliente). Yo me encargué del diseño y el frontend; mi colega, de crear y auditar los smart contracts."
+          },
+          {
+            "title": "Autenticación con firma (SIWE)",
+            "body": "Además de conectar la wallet con RainbowKit, el usuario firma un mensaje (Sign-In With Ethereum + NextAuth) para tener una sesión real, no solo una wallet conectada."
           }
         ],
         "challenges": [
-          "Sincronizar el estado del frontend con las fases on-chain (betting, race, claim) sin un backend intermediario.",
-          "Hacer la experiencia Web3 —wallets y transacciones— clara para usuarios no técnicos."
+          "Lograr aleatoriedad confiable on-chain sin oráculos externos fue el reto central; resolverlo nos amplió mucho el panorama de Web3.",
+          "Sincronizar el flujo por fases (betting → race → claim) con el estado on-chain sin un backend intermediario."
         ]
       }
     }
