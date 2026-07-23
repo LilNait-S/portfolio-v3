@@ -63,7 +63,13 @@ export const projects = {
       "Cloudflare R2",
       "Nubefact",
     ],
-    gallery: ["/images/projects/zelterm.webp"],
+    gallery: [
+      "/images/projects/zelterm.webp",
+      "/images/projects/zelterm-dashboard.webp",
+      "/images/projects/zelterm-orden.webp",
+      "/images/projects/zelterm-pos.webp",
+      "/images/projects/zelterm-productos.webp",
+    ],
   },
   aini28: {
     year: "2024",

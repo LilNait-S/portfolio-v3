@@ -2,6 +2,8 @@ import { ArrowLeft, ArrowUpRight, ChevronRight } from "lucide-react"
 import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
+import { Backdrop } from "@/components/backdrop"
+import { Gallery } from "@/components/gallery"
 import { GithubIcon } from "@/components/icons"
 import { SectionLabel } from "@/components/section-label"
 import { Badge } from "@/components/ui/badge"
@@ -52,6 +54,7 @@ export default async function ProjectDetail({
   return (
     <main className="relative min-h-screen">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
+      <Backdrop />
 
       <div className="relative mx-auto max-w-6xl px-6 py-20 lg:px-8">
         {/* Volver */}
@@ -78,20 +81,10 @@ export default async function ProjectDetail({
           {/* Columna izquierda: fotos + detalles */}
           <div>
             {/* Galería */}
-            <div className="flex flex-col gap-4">
-              {project.gallery.map((src) => (
-                <div
-                  key={src}
-                  className="brackets rounded-tr-xl rounded-bl-xl border border-border"
-                >
-                  <img
-                    src={src}
-                    alt={t(`projects.${slug}.name`)}
-                    className="w-full object-cover rounded-tr-xl rounded-bl-xl"
-                  />
-                </div>
-              ))}
-            </div>
+            <Gallery
+              images={project.gallery}
+              alt={t(`projects.${slug}.name`)}
+            />
 
             {/* Overview */}
             <section className="mt-14">
