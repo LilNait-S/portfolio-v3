@@ -4,10 +4,17 @@
     "description": "Portfolio de Sergio Delgado. Construyo plataformas SaaS y aplicaciones Web3 de punta a punta."
   },
   "nav": {
+    "sections": "SECCIONES",
     "work": "Trabajo",
     "experience": "Experiencia",
     "stack": "Stack",
     "about": "Sobre mí"
+  },
+  "a11y": {
+    "menu": "Menú de secciones",
+    "locale": "Cambiar idioma",
+    "theme": "Cambiar tema",
+    "contact": "Contacto y CV"
   },
   "hero": {
     "role": "FULLSTACK ENGINEER",
@@ -41,10 +48,10 @@
           "Desplegado en la nube para escalabilidad y disponibilidad."
         ]
       },
-      "schedule": {
-        "name": "Schedule App (MVP)",
-        "short": "Gestión para profesores particulares.",
-        "summary": "Sistema de gestión para profesores particulares: clases, alumnos y pagos. Construido en 3 días."
+      "aini28": {
+        "name": "Aini28",
+        "short": "E-commerce de peluches.",
+        "summary": "E-commerce completo con Next.js 15 y Sanity CMS headless, con hardening de seguridad en producción (CSP, rate limiting) y emails transaccionales."
       },
       "catalystbet": {
         "name": "CatalystBet (Web3)",
@@ -86,10 +93,10 @@
     "groups": {
       "frontend": { "title": "FRONTEND", "items": ["React", "Next.js", "TypeScript"] },
       "backend": { "title": "BACKEND", "items": ["Node.js", "NestJS", "Express"] },
-      "database": { "title": "BASE DE DATOS", "items": ["PostgreSQL", "Prisma", "Supabase"] },
+      "database": { "title": "BASE DE DATOS", "items": ["PostgreSQL", "Prisma", "Supabase", "Sanity CMS"] },
       "architecture": { "title": "ARQUITECTURA", "items": ["Monorepos", "APIs REST", "Multi-tenant"] },
       "tools": { "title": "HERRAMIENTAS", "items": ["Git", "Docker", "Playwright"] },
-      "cloud": { "title": "CLOUD", "items": ["Vercel", "Railway", "Cloudflare R2"] }
+      "cloud": { "title": "CLOUD", "items": ["Vercel", "Railway", "Neon", "Cloudflare R2"] }
     }
   },
   "awards": {

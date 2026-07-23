@@ -1,6 +1,9 @@
 // Configuración editable del sitio: enlaces, CV y datos decorativos.
 export const site = {
   name: "Sergio Delgado Arenas",
+  nick: "Naito",
+  role: "Fullstack Developer",
+  avatar: "/images/avatar.webp",
   handle: "SERGIO.DEV",
   location: "Lima, Perú",
   // Coordenadas decorativas del hero (Lima).
@@ -22,7 +25,7 @@ export const site = {
 // El texto viene de las traducciones (messages/*.json → work.projects).
 export const heroProjects = [
   { key: "zelterm", href: "#work" },
-  { key: "schedule", href: "#work" },
+  { key: "aini28", href: "#work" },
   { key: "catalystbet", href: "#work" },
 ] as const;
 
@@ -32,12 +35,23 @@ export const featuredProject = {
   key: "zelterm",
   tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Tailwind CSS"],
   demoUrl: "https://zelterm.com/",
+  image: "/images/projects/zelterm.webp",
 } as const;
 
 // Enlace al showcase del premio (sección Premios).
 export const awardUrl = "https://ethglobal.com/showcase/hack-the-world-3tw5n";
 
 export const sideProjects = [
-  { key: "schedule", num: "02", href: "https://schedule-app-snowy.vercel.app/login" },
-  { key: "catalystbet", num: "03", href: "https://catalystbet.vercel.app/" },
+  {
+    key: "aini28",
+    num: "02",
+    href: "https://aini28.com",
+    image: "/images/projects/aini28.webp",
+  },
+  {
+    key: "catalystbet",
+    num: "03",
+    href: "https://catalystbet.vercel.app/",
+    image: "/images/projects/catalystbet.webp",
+  },
 ] as const;

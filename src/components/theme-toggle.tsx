@@ -1,12 +1,14 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
+  const ta = useTranslations("a11y");
   const [mounted, setMounted] = useState(false);
 
   // Evita el mismatch de hidratación: el tema real solo se conoce en cliente.
@@ -18,7 +20,7 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      aria-label="Cambiar tema"
+      aria-label={ta("theme")}
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >
       {mounted && isDark ? (

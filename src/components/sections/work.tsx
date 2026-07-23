@@ -1,8 +1,8 @@
-import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { Badge } from "@/components/ui/badge";
-import { Link } from "@/i18n/navigation";
-import { featuredProject, sideProjects } from "@/lib/site";
+import { ArrowRight, ArrowUpRight, Star } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Badge } from "@/components/ui/badge"
+import { Link } from "@/i18n/navigation"
+import { featuredProject, sideProjects } from "@/lib/site"
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -12,14 +12,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
         {children}
       </span>
     </div>
-  );
+  )
 }
 
 export function Work() {
-  const t = useTranslations("work");
-  const bullets = t.raw(
-    `projects.${featuredProject.key}.bullets`,
-  ) as string[];
+  const t = useTranslations("work")
+  const bullets = t.raw(`projects.${featuredProject.key}.bullets`) as string[]
 
   return (
     <section
@@ -33,12 +31,14 @@ export function Work() {
 
         <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* ── Proyecto destacado ─────────────────────────────── */}
-          <article className="brackets group flex flex-col rounded-xl border border-border bg-card/60 p-6 backdrop-blur-sm lg:col-span-2">
-            {/* Vista previa (placeholder con franjas diagonales) */}
-            <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border border-border bg-[repeating-linear-gradient(45deg,var(--muted)_0_10px,transparent_10px_20px)]">
-              <span className="font-mono text-xs tracking-widest text-muted-foreground">
-                {t("previewPlaceholder")}
-              </span>
+          <article className="brackets group flex flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm lg:col-span-2">
+            {/* Vista previa del proyecto */}
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border">
+              <img
+                src={featuredProject.image}
+                alt={t(`projects.${featuredProject.key}.name`)}
+                className="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </div>
 
             <p className="mt-6 flex items-center gap-2 font-mono text-[11px] font-medium tracking-[0.25em] text-primary">
@@ -56,10 +56,7 @@ export function Work() {
 
             <ul className="mt-4 space-y-2">
               {bullets.map((b) => (
-                <li
-                  key={b}
-                  className="flex gap-2 text-sm text-foreground/90"
-                >
+                <li key={b} className="flex gap-2 text-sm text-foreground/90">
                   <ArrowRight className="mt-0.5 size-3.5 shrink-0 text-primary" />
                   {b}
                 </li>
@@ -93,7 +90,7 @@ export function Work() {
               <Link
                 key={p.key}
                 href={p.href}
-                className="brackets group flex flex-1 flex-col rounded-xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-card"
+                className="brackets group flex flex-1 flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-card"
               >
                 <span className="font-mono text-2xl font-bold text-primary">
                   {p.num}
@@ -104,15 +101,19 @@ export function Work() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   {t(`projects.${p.key}.summary`)}
                 </p>
-                <span className="mt-auto flex items-center gap-1.5 pt-6 font-mono text-[11px] font-medium uppercase tracking-widest text-primary">
-                  {t("viewProject")}
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
+                {/* Vista previa (debajo de la descripción) */}
+                <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg border border-border">
+                  <img
+                    src={p.image}
+                    alt={t(`projects.${p.key}.name`)}
+                    className="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

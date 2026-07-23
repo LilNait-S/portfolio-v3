@@ -1,11 +1,53 @@
-import Image from "next/image"
-import { useLocale, useTranslations } from "next-intl"
-import { ArrowRight, ArrowUpRight, Code2, Download, Mail } from "lucide-react"
-import { buttonVariants } from "@/components/ui/button"
-import { GithubIcon, LinkedinIcon } from "@/components/icons"
-import { cn } from "@/lib/utils"
+import { useTranslations } from "next-intl"
+import { ArrowRight, Code2 } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import { heroProjects, site } from "@/lib/site"
+import { heroProjects } from "@/lib/site"
+
+// Capa decorativa del fondo: puntos, triángulos con contorno y líneas diagonales
+// en gris suave. Puramente estética, detrás de todo.
+function HeroDecor() {
+  return (
+    <svg
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full text-muted-foreground"
+      viewBox="0 0 1200 700"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+    >
+      <defs>
+        <pattern
+          id="hero-dots"
+          width="18"
+          height="18"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" />
+        </pattern>
+      </defs>
+
+      {/* Clústeres de puntos */}
+      <rect x="60" y="40" width="230" height="140" fill="url(#hero-dots)" opacity="0.1" />
+      <rect x="980" y="470" width="180" height="150" fill="url(#hero-dots)" opacity="0.08" />
+
+      {/* Shards irregulares rellenos (gris). Cada punto es un par "x y". */}
+      <g fill="currentColor">
+        <path d="M540 40 L660 55 L600 150 L560 120 Z" opacity="0.1" />
+        <path d="M905 240 L995 265 L960 350 L915 320 Z" opacity="0.08" />
+        <path d="M1040 110 L1130 140 L1095 205 Z" opacity="0.07" />
+        <path d="M110 500 L195 520 L160 590 L125 560 Z" opacity="0.08" />
+        <path d="M760 480 L900 445 L870 500 L800 545 Z" opacity="0.07" />
+        <path d="M300 250 L360 230 L345 300 Z" opacity="0.09" />
+      </g>
+
+      {/* Pequeños shards de acento */}
+      <g fill="currentColor" opacity="0.16">
+        <path d="M470 300 l14 4 -6 12 z" />
+        <path d="M1000 360 l12 6 -10 8 z" />
+        <path d="M330 170 l-12 4 6 12 z" />
+      </g>
+    </svg>
+  )
+}
 
 // Tarjetas de proyectos + panel de estado (reutilizadas en móvil y escritorio).
 // `fan` activa el efecto abanico: cada card se rota y desplaza progresivamente.
@@ -97,18 +139,25 @@ function SystemStatus({ className = "" }: { className?: string }) {
 
 export function Hero() {
   const t = useTranslations("hero")
-  const ts = useTranslations("social")
-  const locale = useLocale()
-  const cvHref = locale === "en" ? site.cv.en : site.cv.es
 
   return (
     <section
       id="top"
       className="relative min-h-screen overflow-hidden border-b border-border"
     >
-      {/* Fondo: cuadrícula + desvanecido radial */}
+      {/* Fondo: cuadrícula + desvanecido radial + formas decorativas */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,var(--primary),transparent_55%)] opacity-[0.12]" />
+
+      {/* Esferas degradadas: usan el color del fondo para "borrar" la cuadrícula
+          en zonas y crear áreas lisas. La última añade un tinte morado. */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute -left-24 top-8 size-[520px] rounded-full bg-[radial-gradient(circle,var(--background)_42%,transparent_72%)]" />
+        <div className="absolute left-1/3 -bottom-32 size-[560px] rounded-full bg-[radial-gradient(circle,var(--background)_45%,transparent_72%)]" />
+        <div className="absolute -right-16 top-1/4 size-[480px] rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--primary),transparent_85%)_0%,transparent_70%)]" />
+      </div>
+
+      <HeroDecor />
 
       {/* Franja diagonal morada que cruza por detrás del personaje */}
       <div
@@ -117,12 +166,9 @@ export function Hero() {
       />
 
       {/* Personaje (solo móvil): fondo atenuado */}
-      <Image
+      <img
         src="/images/hero.webp"
         alt=""
-        priority
-        width={1254}
-        height={1254}
         className="pointer-events-none absolute bottom-0 left-1/2 z-0 h-[62%] w-auto max-w-none -translate-x-1/2 select-none opacity-20 sm:h-[75%] sm:opacity-30 lg:hidden"
       />
 
@@ -130,12 +176,9 @@ export function Hero() {
       {/* El wrapper se ajusta al ancho de la imagen, así las tarjetas
           quedan ancladas al borde derecho del personaje, no de la página. */}
       <div className="absolute bottom-0 left-[62%] hidden h-[94%] -translate-x-1/2 lg:block">
-        <Image
+        <img
           src="/images/hero.webp"
           alt=""
-          priority
-          width={1254}
-          height={1254}
           className="pointer-events-none h-full w-auto max-w-none select-none"
         />
         {/* Tarjetas ancladas al borde derecho de la imagen (solapan un poco) */}
@@ -153,10 +196,6 @@ export function Hero() {
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-24 lg:px-16">
         {/* ── Contenido (izquierda) ────────────────────────────── */}
         <div className="pointer-events-auto max-w-xl">
-          <p className="flex items-center gap-2 font-mono text-xs font-medium tracking-[0.3em] text-primary">
-            {t("role")}
-          </p>
-
           <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl xl:text-6xl">
             {t("titleLine1")}{" "}
             <span className="text-primary">{t("titleHighlight")}</span>
@@ -165,58 +204,6 @@ export function Hero() {
           <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
             {t("subtitle")}
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="#work"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-11 px-6 text-sm",
-              )}
-            >
-              {t("ctaWork")}
-              <ArrowUpRight className="size-4" />
-            </Link>
-            <a
-              href={cvHref}
-              download
-              className={cn(
-                buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 px-6 text-sm",
-              )}
-            >
-              {t("ctaCv")}
-              <Download className="size-4" />
-            </a>
-          </div>
-
-          <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
-            <a
-              href={site.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 transition-colors hover:text-primary"
-            >
-              <GithubIcon className="size-4" />
-              {ts("github")}
-            </a>
-            <a
-              href={site.links.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 transition-colors hover:text-primary"
-            >
-              <LinkedinIcon className="size-4" />
-              {ts("linkedin")}
-            </a>
-            <a
-              href={site.links.email}
-              className="flex items-center gap-2 transition-colors hover:text-primary"
-            >
-              <Mail className="size-4" />
-              {ts("email")}
-            </a>
-          </div>
         </div>
 
         {/* Tarjetas en móvil (en flujo, debajo del contenido) */}
