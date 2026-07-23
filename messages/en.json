@@ -100,32 +100,36 @@
       },
       "aini28": {
         "name": "Aini28",
-        "short": "Plush-toy e-commerce.",
-        "summary": "Full e-commerce with Next.js 15 and headless Sanity CMS, with production-grade security hardening (CSP, rate limiting) and transactional emails.",
+        "short": "Plush-toy catalog + cart.",
+        "summary": "Online plush-toy catalog with a cart whose orders are sent via WhatsApp or email. Managed from Sanity CMS and optimized for cost, SEO and security.",
         "meta": {
           "type": "Freelance",
           "role": "Fullstack (solo)",
-          "status": "In production",
-          "highlight": "Production security: CSP + rate limiting"
+          "status": "In production (~2 years)",
+          "highlight": "Zero recurring cost (domain only)"
         },
-        "overview": "Plush-toy e-commerce store built as a freelance project with Next.js 15 and headless Sanity CMS for catalog management, prioritizing security and performance in a real production environment.",
+        "overview": "Plush-toy store for a Peruvian small business. The client needed to showcase the catalog without a payment gateway: orders are assembled in a cart and closed over WhatsApp or email, exactly how he wanted to sell. It has been in production for ~2 years. I did everything end to end —design, frontend, backend and security— with the catalog, offers and checkout fully managed from Sanity.",
         "decisions": [
           {
-            "title": "Headless Sanity CMS",
-            "body": "I decoupled content from code so the client can manage the catalog without touching code, with a flexible structure and previews."
+            "title": "Headless Sanity for cost",
+            "body": "I chose headless Sanity over Shopify/WooCommerce to remove monthly fees: the client only pays for the domain (once a year) and everything else runs on free tiers. From a single panel he manages catalog, offers, cart and checkout."
           },
           {
-            "title": "Security hardening",
-            "body": "I implemented a Content Security Policy, rate limiting with Upstash Redis and protected the mail endpoints to withstand abuse in production."
+            "title": "Orders via WhatsApp/email, no gateway",
+            "body": "The client preferred closing sales over WhatsApp. The cart assembles the order and sends it via WhatsApp or email (React Email + Nodemailer), which also covers order confirmation, contact and the complaints book. No gateway: simpler and aligned with how he sells."
           },
           {
-            "title": "SEO and performance",
-            "body": "I added structured metadata (JSON-LD) and structured data for search engines, caring for load speed and indexing."
+            "title": "Preventive security",
+            "body": "Even for a small site I hardened production: CSP, rate limiting with Upstash Redis on the mail endpoints and JSON-LD sanitization. A preventive measure to avoid spam or abuse down the line."
+          },
+          {
+            "title": "Cost-conscious decisions",
+            "body": "I prioritized zero recurring cost down to the details: I use the native <img> tag instead of Next's Image component (whose optimization has a cost) and rely on agents and skills to speed up maintenance."
           }
         ],
         "challenges": [
-          "Hardening security for a real production environment: CSP, rate limiting and protected mail endpoints.",
-          "Structuring the catalog in a headless CMS so the client can manage it independently."
+          "No new technical challenges: I already had experience, so the value was in the judgment to pick the right tools.",
+          "The focus was minimizing recurring cost: free tiers and native <img> instead of Next's paid component."
         ]
       },
       "catalystbet": {
