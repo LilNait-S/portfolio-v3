@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 import { Backdrop } from "@/components/backdrop"
 import { Gallery } from "@/components/gallery"
+import { Reveal } from "@/components/motion/reveal"
 import { GithubIcon } from "@/components/icons"
 import { SectionLabel } from "@/components/section-label"
 import { Badge } from "@/components/ui/badge"
@@ -98,9 +99,10 @@ export default async function ProjectDetail({
             <section className="mt-14">
               <SectionLabel>{t("detail.decisions")}</SectionLabel>
               <div className="mt-8 space-y-6">
-                {decisions.map((d) => (
-                  <div
+                {decisions.map((d, i) => (
+                  <Reveal
                     key={d.title}
+                    delay={i * 0.08}
                     className="brackets rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm"
                   >
                     <h3 className="flex items-center gap-2 font-semibold">
@@ -110,7 +112,7 @@ export default async function ProjectDetail({
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {d.body}
                     </p>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
             </section>

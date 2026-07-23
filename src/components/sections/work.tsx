@@ -1,19 +1,10 @@
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Reveal } from "@/components/motion/reveal"
+import { SectionLabel } from "@/components/section-label"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "@/i18n/navigation"
 import { featuredProject, sideProjects } from "@/lib/site"
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="h-px w-8 bg-primary" />
-      <span className="font-mono text-xs font-medium tracking-[0.3em] text-primary">
-        {children}
-      </span>
-    </div>
-  )
-}
 
 export function Work() {
   const t = useTranslations("work")
@@ -31,7 +22,8 @@ export function Work() {
 
         <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* ── Proyecto destacado ─────────────────────────────── */}
-          <article className="brackets group flex flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm lg:col-span-2">
+          <Reveal className="lg:col-span-2">
+          <article className="brackets group flex h-full flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm">
             {/* Vista previa del proyecto */}
             <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border">
               <img
@@ -94,12 +86,13 @@ export function Work() {
               </a>
             </div>
           </article>
+          </Reveal>
 
           {/* ── Proyectos secundarios ──────────────────────────── */}
           <div className="flex flex-col gap-4">
-            {sideProjects.map((p) => (
+            {sideProjects.map((p, i) => (
+              <Reveal key={p.key} delay={0.1 + i * 0.1} className="flex flex-1">
               <Link
-                key={p.key}
                 href={`/projects/${p.key}`}
                 className="brackets group flex flex-1 flex-col rounded-tr-xl rounded-bl-xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-card"
               >
@@ -121,6 +114,7 @@ export function Work() {
                   />
                 </div>
               </Link>
+              </Reveal>
             ))}
           </div>
         </div>

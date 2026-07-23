@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Reveal } from "@/components/motion/reveal";
 import { SectionLabel } from "@/components/section-label";
 
 export function About() {
@@ -14,7 +15,7 @@ export function About() {
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2 lg:px-16">
         {/* ── Texto ──────────────────────────────────────────── */}
-        <div>
+        <Reveal>
           <SectionLabel>{t("label")}</SectionLabel>
           <p className="mt-8 text-base leading-relaxed text-muted-foreground">
             {t("p1")}
@@ -22,15 +23,17 @@ export function About() {
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {t("p2")}
           </p>
-        </div>
+        </Reveal>
 
         {/* ── Cita destacada ─────────────────────────────────── */}
+        <Reveal delay={0.12}>
         <div className="brackets relative rounded-tr-lg rounded-bl-lg border border-border bg-card/60 p-8 backdrop-blur-sm md:p-10">
           <Quote className="size-6 fill-primary text-primary" />
           <p className="mt-5 text-2xl font-bold leading-snug">
             {t("quote")}
           </p>
         </div>
+        </Reveal>
       </div>
     </section>
   );

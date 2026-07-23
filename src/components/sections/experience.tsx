@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Reveal } from "@/components/motion/reveal";
 import { SectionLabel } from "@/components/section-label";
 
 const ITEMS = ["inuba", "gato"] as const;
@@ -18,11 +19,12 @@ export function Experience() {
         <SectionLabel>{t("label")}</SectionLabel>
 
         <div className="mt-12 space-y-10">
-          {ITEMS.map((key) => {
+          {ITEMS.map((key, i) => {
             const bullets = t.raw(`items.${key}.bullets`) as string[];
             return (
-              <div
+              <Reveal
                 key={key}
+                delay={i * 0.1}
                 className="grid grid-cols-1 gap-4 border-t border-dashed border-border pt-8 md:grid-cols-[220px_1fr] md:gap-10"
               >
                 {/* Puesto / empresa / periodo */}
@@ -53,7 +55,7 @@ export function Experience() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

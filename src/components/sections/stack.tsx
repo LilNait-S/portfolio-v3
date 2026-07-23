@@ -1,5 +1,6 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Reveal } from "@/components/motion/reveal"
 import { SectionLabel } from "@/components/section-label"
 import { awardCertificateUrl, awardUrl } from "@/lib/site"
 
@@ -30,10 +31,10 @@ export function Stack() {
           <SectionLabel>{t("label")}</SectionLabel>
 
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
-            {GROUPS.map((g) => {
+            {GROUPS.map((g, i) => {
               const items = t.raw(`groups.${g}.items`) as string[]
               return (
-                <div key={g}>
+                <Reveal key={g} delay={i * 0.07}>
                   <h4 className="font-mono text-xs font-medium tracking-[0.2em] text-primary">
                     {t(`groups.${g}.title`)}
                   </h4>
@@ -44,7 +45,7 @@ export function Stack() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </Reveal>
               )
             })}
           </div>
@@ -54,6 +55,7 @@ export function Stack() {
         <div>
           <SectionLabel>{ta("label")}</SectionLabel>
 
+          <Reveal delay={0.1}>
           <a
             href={awardUrl}
             target="_blank"
@@ -87,6 +89,7 @@ export function Stack() {
             {ta("certificate")}
             <ArrowUpRight className="size-3.5" />
           </a>
+          </Reveal>
         </div>
       </div>
     </section>
