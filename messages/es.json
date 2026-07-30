@@ -57,7 +57,7 @@
       "zelterm": {
         "name": "Zelterm ERP",
         "short": "ERP para servicio técnico.",
-        "summary": "ERP multi-tenant para pymes de servicio técnico: órdenes de reparación, POS multimoneda, inventario con trazabilidad y facturación SUNAT.",
+        "summary": "ERP multi-tenant para pymes de servicio técnico: órdenes de reparación, POS multimoneda, inventario con trazabilidad, garantías/devoluciones y facturación SUNAT.",
         "bullets": [
           "Órdenes de reparación con trazabilidad de punta a punta (protección ante reclamos).",
           "POS multipago y multimoneda (PEN/USD) con facturación electrónica SUNAT.",
@@ -69,11 +69,15 @@
           "status": "En beta (pruebas)",
           "highlight": "Multi-tenant · multimoneda · SUNAT"
         },
-        "overview": "Zelterm nace para las pymes de servicio técnico, que no tenían un sistema accesible: las opciones existentes eran demasiado costosas. Me inspiré en mi etapa como vendedor de componentes electrónicos. La plataforma les da orden — registrar cada reparación, cómo llegó el producto y qué se hizo — con una trazabilidad que además los protege ante posibles reclamos. Reemplaza cuadernos y hojas de cálculo con una sola herramienta: órdenes de servicio, punto de venta, inventario con seguimiento por número de serie y facturación electrónica SUNAT.",
+        "overview": "Zelterm nace para las pymes de servicio técnico, que no tenían un sistema accesible: las opciones existentes eran demasiado costosas. Me inspiré en mi etapa como vendedor de componentes electrónicos. La plataforma les da orden — registrar cada reparación, cómo llegó el producto y qué se hizo — con una trazabilidad que además los protege ante posibles reclamos. Reemplaza cuadernos y hojas de cálculo con una sola herramienta: órdenes de servicio, punto de venta, inventario con seguimiento por número de serie y facturación electrónica SUNAT. Tampoco termina en el checkout: las garantías y devoluciones post-venta quedan ligadas a la venta original, de forma trazable, cubriendo todo el ciclo de vida de la venta.",
         "decisions": [
           {
             "title": "Multi-tenant desde una sola base de datos",
             "body": "Arranqué con una única base de datos compartida para lanzar rápido y con bajo costo. El plan de escalado es una tabla business con un database_id que enrute cada negocio a su propia base cuando el volumen lo justifique — una evolución gradual en vez de sobre-ingeniería desde el día uno."
+          },
+          {
+            "title": "Soporte multi-régimen fiscal peruano",
+            "body": "Los talleres peruanos operan bajo distintos regímenes tributarios — NRUS (solo boletas, sin obligación de facturación electrónica), RER, RMT y Régimen General — cada uno con reglas propias para emitir comprobantes. El producto tenía que funcionar incluso sin facturación electrónica activa, y calcular precios con o sin IGV según el régimen del negocio. Entender el negocio peruano real, no solo el Régimen General, moldeó el modelo de datos desde el inicio."
           },
           {
             "title": "Multimoneda y multipago en todo el sistema",
@@ -84,8 +88,16 @@
             "body": "En vez de construir el conector fiscal desde cero, integré un proveedor autorizado. La complejidad se reduce a enviar bien los datos, cumpliendo la normativa peruana con mucho menos riesgo."
           },
           {
+            "title": "Autenticación con dual-token JWT",
+            "body": "accessToken de corta duración más un refreshToken de 7 días en cookie httpOnly. El logout se invalida de forma stateless: un campo lastLogoutAt en el usuario rechaza cualquier token emitido antes de esa marca, sin tabla de sesiones ni blacklist en Redis."
+          },
+          {
             "title": "Despliegue gestionado ahora, VPS después",
             "body": "Elegí Vercel + Railway para desplegar rápido y validar sin fricción de infraestructura. Cuando crezca la base de clientes migraré a un VPS por costo — una decisión que tomo cuando la demanda lo justifique, no antes."
+          },
+          {
+            "title": "Observabilidad en Postgres antes que Redis",
+            "body": "En vez de sumar Redis desde el día uno para cache/observabilidad, usé lo que ya tenía: un log de queries lentas más un interceptor que marca requests lentos directamente en Postgres. Redis queda para cuando el tráfico real lo justifique — el mismo patrón de evolución gradual que uso en multi-tenant y hosting."
           },
           {
             "title": "Desarrollo asistido por agentes (Claude Code + MCP)",
@@ -94,6 +106,7 @@
         ],
         "challenges": [
           "Propagar la lógica multimoneda por todo el sistema generó bugs de conversión que fui corrigiendo flujo por flujo hasta dejarlos consistentes.",
+          "Los cron jobs con I/O larga (reintentos de facturación, sincronización) necesitaban evitar ejecución concurrente entre instancias. Empecé con pg_advisory_lock, pero se trababa con el pool de conexiones (pg.Pool); lo resolví con un lease lock propio sobre una tabla de control — más simple y confiable que el advisory lock de Postgres en este contexto.",
           "Reforcé la seguridad y el manejo de ventas a medida que entendía mejor los casos reales del negocio.",
           "Prioricé terminarlo bien antes que rápido: solo reemplazo algo cuando aprendo una forma más eficiente que la que ya tengo."
         ]
