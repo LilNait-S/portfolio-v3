@@ -1,8 +1,9 @@
-// URL base del sitio. En Vercel se resuelve al dominio de producción;
-// en local cae a localhost. Se usa en metadata, sitemap y robots.
-export const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
+// URL base del sitio: dominio propio en producción; en local, localhost.
+// Se usa en metadata, sitemap y robots.
+export const SITE_URL =
+  process.env.VERCEL_ENV === "production"
+    ? "https://sergio.naitlabs.com"
+    : "http://localhost:3000";
 
 // Configuración editable del sitio: enlaces, CV y datos decorativos.
 export const site = {
@@ -20,7 +21,7 @@ export const site = {
     en: "/cv-sergio-delgado-en.pdf",
   },
   links: {
-    website: "https://lilnait.vercel.app",
+    website: "https://sergio.naitlabs.com",
     github: "https://github.com/LilNait-S",
     linkedin: "https://www.linkedin.com/in/sergio-delgado-arenas",
     email: "mailto:lilnait.santos@gmail.com",
